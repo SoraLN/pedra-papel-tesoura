@@ -1,0 +1,44 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: start;
+}
+
+.container{
+    display: flex;
+    height: 33rem;
+    width: 53rem;
+    background-color: #136b30;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 8rem;
+    flex-direction: column;
+}
+
+/* ========= TABULEIRO BOT ========== */
+.tabuleiro-bot{
+    display: flex;
+    border: 2px solid red;
+    flex: 40%;
+}
+
+/* ============ CENTER ============== */
+.center{
+    display: flex;
+    border: 2px solid yellow;
+    flex: 20%;
+}
+
+/* ======== TABULEIRO PLAYER ======== */
+.tabuleiro-player{
+    display: flex;
+    border: 2px solid blue;
+    flex: 40%;
+}
