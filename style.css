@@ -8,12 +8,14 @@
 body{
     display: flex;
     height: 100vh;
-    justify-content: center;
-    align-items: start;
+    justify-content: start;
+    align-items: center;
     font-family: "Outfit", sans-serif;
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
+
+    flex-direction: column;
 }
 
 .container{
@@ -23,14 +25,12 @@ body{
     background-color: #136b30;
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 8rem;
     flex-direction: column;
 }
 
 /* ========= TABULEIRO BOT ========== */
 .tabuleiro-bot{
     display: flex;
-    border: 2px solid red;
     flex: 40%;
     align-items: center;
     justify-content: center;
@@ -39,7 +39,6 @@ body{
 /* ============ CENTER ============== */
 .center{
     display: flex;
-    border: 2px solid yellow;
     flex: 20%;
     align-items: center;
     justify-content: center;
@@ -68,7 +67,6 @@ body{
 }
 
 .play-card{
-    border: 3px solid yellow;
     height: 100%;
     width: 20rem;
 }
@@ -76,7 +74,6 @@ body{
 /* ======== TABULEIRO PLAYER ======== */
 .tabuleiro-player{
     display: flex;
-    border: 2px solid blue;
     flex: 40%;
     align-items: center;
     justify-content: center;
@@ -99,4 +96,31 @@ body{
 .menor{
     height: 105px;
     width: 105px;  
+}
+
+/* ----PONTOS0---- */
+
+.pontos{
+    display: flex;
+    margin-top: 2.2rem;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+.pontos p{
+    font-size: 90px;
+}
+
+.empate{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 0.4rem;
+}
+
+.empate p, .empate label{
+    font-size: 20px;
 }

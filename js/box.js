@@ -1,5 +1,12 @@
 const box = document.getElementById("box_img")
 
+let ponto_player = 0
+let ponto_bot = 0
+let empate = 0
+
+let ponto_player_final = 0
+let ponto_bot_final = 0
+
 function delet_card(id){
 
     const container = document.getElementById(id)
@@ -66,6 +73,13 @@ function create(){
 box.addEventListener("click", ()=>{
 delet_card("random_card")
 
+document.getElementById("ponto_bot").innerHTML = 0
+document.getElementById("ponto_player").innerHTML = 0
+document.getElementById("empate").innerHTML = 0
+ponto_bot = 0
+ponto_player = 0
+empate = 0
+
     const bot = document.getElementById("tabuleiro-bot")
     const player = document.getElementById("tabuleiro-player")
 
@@ -74,36 +88,30 @@ delet_card("random_card")
 
     create()
 
+    /*--------------- CODIGO DAS CARTAS ----------------------------*/
 
+    let aleatorio = Math.floor(Math.random()*3)
 
-
-
-
-
-
-    
     function random_card(){
 
         const container = document.getElementById("random_card")
 
-        const aleatorio = Math.floor(Math.random()*3)
-
         const carta = document.createElement("img")
-        const card1 = "img/papel-vermelho.png"
-        const card2 = "img/pedra-vermelho.png"
-        const card3 = "img/tesoura-vermelho.png"
+        const card0 = "img/papel-vermelho.png"
+        const card1 = "img/pedra-vermelho.png"
+        const card2 = "img/tesoura-vermelho.png"
 
         switch(aleatorio){
             case 0:
-                carta.src = card1
+                carta.src = card0
             break;
 
             case 1:
-                carta.src = card2
+                carta.src = card1
             break;
 
             case 2:
-                carta.src = card3
+                carta.src = card2
             break;
         }
 
@@ -114,54 +122,114 @@ delet_card("random_card")
 
     }
 
+    const delet_card_bot = (()=>{
+        const bot = document.getElementById("tabuleiro-bot")
+        bot.removeChild(bot.firstChild)
+    })
+
+    function function_card(id, id2){
+        delet_card("random_card")
+
+        const carta = document.createElement("img")
+        carta.src = `img/${id}-azul.png`
+        document.getElementById("random_card").appendChild(carta)
+        carta.setAttribute("class", "menor")
+
+        id2.remove()
+
+        random_card()
+
+        delet_card_bot()
+    }
+
+    const att_ponto = (()=>{
+        const bot = document.getElementById("ponto_bot")
+        const player = document.getElementById("ponto_player")
+        const empate_div = document.getElementById("empate")
+
+        bot.innerHTML = ponto_bot
+        player.innerHTML = ponto_player
+        empate_div.innerHTML = empate
+    })
+
+    function pontos_final(){
+
+        const tabuleiro = document.getElementById("tabuleiro-bot")
+
+            if(tabuleiro.children.length == 0){
+                if(ponto_bot > ponto_player){
+                    console.log("bot ganho")
+        
+                }else if(ponto_player > ponto_bot){
+                    console.log("player ganho")
+        
+                }else{
+                    console.log("deu empate")
+                }  
+            }
+    }       //++++++++AQUI TA O CODIGO DA SINCRONIA, SÓ MUDAR O INNER+++++++++++++++++
+
     const papel = document.querySelectorAll('.card-0')
     const pedra = document.querySelectorAll(".card-1")
     const tesoura = document.querySelectorAll(".card-2")
 
     for(let paper of papel){
         paper.addEventListener("click", ()=>{
-            delet_card("random_card")
 
-            const carta = document.createElement("img")
-            carta.src = "img/papel-azul.png"
-            document.getElementById("random_card").appendChild(carta)
-            carta.setAttribute("class", "menor")
+            function_card("papel",paper)
 
-            paper.remove()
+            if(aleatorio == 0){
+               empate++
 
-            random_card()
+            }else if(aleatorio == 1){
+                ponto_player++
 
+            }else if(aleatorio == 2){
+                ponto_bot++
+            }
+        att_ponto()
+        pontos_final()
         })
-    }
+    }// For papel
 
     for(let stone of pedra){
         stone.addEventListener("click", ()=>{
-            delet_card("random_card")
 
-            const carta = document.createElement("img")
-            carta.src = "img/pedra-azul.png"
-            document.getElementById("random_card").appendChild(carta)
-            carta.setAttribute("class", "menor")
+            function_card("pedra",stone)
 
-            stone.remove()
-
-            random_card()
+            if(aleatorio == 0){
+                ponto_bot++
+ 
+             }else if(aleatorio == 1){
+                 empate++
+ 
+             }else if(aleatorio == 2){
+                 ponto_player++
+             }
+        att_ponto()
+        pontos_final()
         })
-    }//for of pedra
+    }// For pedra
 
     for(let scissors of tesoura){
         scissors.addEventListener("click", ()=>{
-            delet_card("random_card")
 
-            const carta = document.createElement("img")
-            carta.src = "img/tesoura-azul.png"
-            document.getElementById("random_card").appendChild(carta)
-            carta.setAttribute("class", "menor")
+            function_card("tesoura",scissors)
 
-            scissors.remove()
-
-            random_card()
+            if(aleatorio == 0){
+                ponto_player++
+ 
+             }else if(aleatorio == 1){
+                 ponto_bot++
+ 
+             }else if(aleatorio == 2){
+                 empate++
+             }
+        att_ponto()
+        pontos_final()
         })
-    }//for of tesoura
+    }// For tesoura
 
 })
+
+//Falta apenas fazer a sincronia de quem ganhou a partida
