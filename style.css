@@ -124,3 +124,28 @@ body{
 .empate p, .empate label{
     font-size: 20px;
 }
+
+
+.perdeu{
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+    background-color: rgb(255, 125, 125);
+    padding: 0px 5px;
+    border-radius: 5px;
+}
+
+.ganhou{
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+    background-color: rgb(105, 224, 121);
+    padding: 0px 5px;
+    border-radius: 5px;
+}
+
+.empatou{
+    color: rgb(0, 0, 0);
+    font-size: 35px;
+    background-color: rgb(247, 244, 110);
+    padding: 0px 5px;
+    border-radius: 5px;
+}

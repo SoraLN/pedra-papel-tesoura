@@ -156,18 +156,36 @@ empate = 0
 
         const tabuleiro = document.getElementById("tabuleiro-bot")
 
+        function create_text(mensagem,clase){ //AQUI
+            delet_card("random_card")
+            const text = document.createElement("p")
+            document.getElementById("random_card").appendChild(text)
+
+            text.innerHTML = mensagem
+            text.classList.add(clase)
+        }
+
             if(tabuleiro.children.length == 0){
-                if(ponto_bot > ponto_player){
-                    console.log("bot ganho")
-        
-                }else if(ponto_player > ponto_bot){
-                    console.log("player ganho")
-        
-                }else{
-                    console.log("deu empate")
-                }  
+
+                setTimeout(()=>{
+                    
+                    if(ponto_bot > ponto_player){
+                        create_text("!! PERDEU !!", "perdeu")
+                        ponto_bot_final++
+                        document.getElementById("ponto_bot_total").innerHTML = ponto_bot_final
+            
+                    }else if(ponto_player > ponto_bot){
+                        create_text("!! VENCEU !!", "ganhou")
+                        ponto_player_final++
+                        document.getElementById("ponto_player_total").innerHTML = ponto_player_final
+            
+                    }else{
+                        create_text("DEU EMPATE:)", "empatou")
+                    } 
+
+                }, 2000)
             }
-    }       //++++++++AQUI TA O CODIGO DA SINCRONIA, SÓ MUDAR O INNER+++++++++++++++++
+    }       
 
     const papel = document.querySelectorAll('.card-0')
     const pedra = document.querySelectorAll(".card-1")
